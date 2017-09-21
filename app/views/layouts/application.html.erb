@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ItemExclusions</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render 'nav' %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div style="margin-bottom: 100px;">
+            <%= render 'alerts' %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render 'footer' %>
+  </body>
+</html>

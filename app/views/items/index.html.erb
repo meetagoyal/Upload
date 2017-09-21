@@ -1,0 +1,50 @@
+<h1 class="display-4 p-2">Item Sub Exclusions</h1>
+
+
+
+<div class="row">
+
+<%= link_to 'Template', download_items_url %>
+
+<%= link_to 'Export',  items_path(format: :xlsx)  %>
+
+
+
+<%= form_with(url: upload_items_path, local: true, method: :post) do |form| %>
+  <%= form.file_field :my_file %>
+   <div class="form-group">
+     <%= form.submit 'Upload', class: 'btn btn-outline-primary' %>
+   </div>
+  <% end %>
+  
+  </div>
+
+<table class="table table-striped" bgcolor="#C5D5F4">
+ <thead class="thead-inverse">
+   <tr>
+     <th></th>
+     <th>Id</th>
+     <th>Item Number</th>
+     <th>Begin Date</th>
+     <th>End Date</th>
+
+     </tr>
+ </thead>
+  <tbody>
+   <% @items.each do |i| %>
+     <tr>
+       <td>
+           <%= link_to(i, method: :delete) do %>
+               <img width ="30" height ="30" src="/trash.png" />
+           <% end %>
+       </td>
+       <td><%= i.id %></td>
+       <td><%= i.item_number %></td>
+       <td><%= i.start_date %></td>
+       <td><%= i.end_date %></td>
+
+       </tr>
+     <% end %>
+ </tbody>
+ 
+</table>
