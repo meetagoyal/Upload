@@ -1,0 +1,43 @@
+
+
+<div>
+<table class="table table-striped" bgcolor="#C5D5F4">
+<thead class="thead-inverse">
+  <tr>
+    
+    <th>Lead</th>
+    <th>Item #</th>
+    <th>PriceChangeDate</th>
+    <th>Excl Reason</th>
+    <th>Comments </th>
+    <th>Created Date </th>
+    <th>Created By </th>
+    </tr>
+</thead>
+  <tbody>
+  <% @exclusions.each do |i| %>
+    <tr>
+      <td><%= i.LEAD %></td>
+      <td><%= i.EM_ITEM_NUM %></td>
+      <td><%= i.PRC_CHG_DT %></td>
+      <td><%= i.EXCL_REASON_CD %></td>
+      <td><%= i.EXCL_NOTES %></td>
+      <td><%= i.CREATE_TS.to_date.to_s %></td>
+      <td><%= i.CREATE_USER %></td>
+      </tr>
+    <% end %>
+</tbody>
+
+</table>
+</div>
+
+
+<div class="row">
+  <div class="col-9 m-2">  </div>
+  <div class="col-3">
+    
+      <%= pagers(@page, @count, @pages) %>
+
+  </div>
+</div>
+

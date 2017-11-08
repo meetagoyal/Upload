@@ -13,24 +13,31 @@
       <li class="nav-item">
         <a class="nav-link" href="/users/sign_up"><i class="fa fa-plus-circle"></i> Register</a>
       </li>
-    <% else %>
+    <% elsif @is_admin %>
       <li class="nav-item">
-        <a class="nav-link" href="/items"><i class="fa fa-bus"></i> Item Sub Excluions</a>
+        <a class="nav-link" href="/items"><i class="fa fa-file-excel-o"></i> Item Sub Excluions</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/ppitems"><i class="fa fa-ship"></i> Price Protection Exclusions</a>
+        <a class="nav-link" href="/prices"><i class="fa fa-file-excel-o"></i>Price Event Excluions</a>
       </li>
+      <% elsif @is_user %>
+      <li class="nav-item">
+        <a class="nav-link" href="/items"><i class="fa fa-file-excel-o"></i> Item Sub Excluions</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="/prices"><i class="fa fa-file-excel-o"></i>Price Event Excluions</a>
+    </li>
     <% end %>
 
     <% if @is_logged_in %>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/edit"><i class="fa fa-id-card"></i> Profile</a>
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
-          <i class="fa fa-window-close"></i> <%= "#{@user.email} (#{@user.role})" %>
-        <% end %>
-      </li>
-    <% end %>
+    <li class="nav-item">
+      <a class="nav-link" href="/users/edit"><i class="fa fa-id-card"></i> Profile</a>
+    </li>
+    <li class="nav-item">
+      <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+        <i class="fa fa-window-close"></i> <%= "#{@user.email} (#{@user.role})" %>
+      <% end %>
+    </li>
+  <% end %>
 </div>
 </nav>

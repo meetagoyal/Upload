@@ -2,49 +2,65 @@
 
 
 
-<div class="row">
 
-<%= link_to 'Template', download_items_url %>
+  <div class="row m-2 ">
+  <div class="col-5">
+    <%= form_with(url: upload_items_path, local: true, method: :post) do |form| %>
+        <%= form.file_field :my_file %>
 
-<%= link_to 'Export',  items_path(format: :xlsx)  %>
-
-
-
-<%= form_with(url: upload_items_path, local: true, method: :post) do |form| %>
-  <%= form.file_field :my_file %>
-   <div class="form-group">
-     <%= form.submit 'Upload', class: 'btn btn-outline-primary' %>
-   </div>
-  <% end %>
-  
+        <%= form.submit 'Upload', class: 'btn btn-outline-primary  fa fa-upload ' %>
+    <% end %>  
   </div>
 
-<table class="table table-striped" bgcolor="#C5D5F4">
- <thead class="thead-inverse">
-   <tr>
-     <th></th>
-     <th>Id</th>
-     <th>Item Number</th>
-     <th>Begin Date</th>
-     <th>End Date</th>
+  <div class="col-xs-2">
+       <%= link_to 'Export Data', export_items_path(format: :xlsx) , class: 'btn btn-outline-primary fa fa-download' %>
+  </div>
+  <div class="col-3 m-2">  </div>
 
-     </tr>
- </thead>
-  <tbody>
-   <% @items.each do |i| %>
-     <tr>
-       <td>
-           <%= link_to(i, method: :delete) do %>
-               <img width ="30" height ="30" src="/trash.png" />
-           <% end %>
-       </td>
-       <td><%= i.id %></td>
-       <td><%= i.item_number %></td>
-       <td><%= i.start_date %></td>
-       <td><%= i.end_date %></td>
+  <div class="col-xs-2">
+    <%= link_to "Download Template", download_items_url, class: 'fa fa-cloud-download btn btn-outline-primary' %>
+  </div>
 
-       </tr>
-     <% end %>
- </tbody>
- 
-</table>
+</div>
+  
+
+<div>
+  <table class="table table-striped" bgcolor="#C5D5F4">
+  <thead class="thead-inverse">
+    <tr>
+      <th></th>
+      <th>Id</th>
+      <th>Item Number</th>
+      <th>Begin Date</th>
+      <th>End Date</th>
+
+      </tr>
+  </thead>
+    <tbody>
+    <% @items.each do |i| %>
+      <tr>
+        <td>
+            <%= link_to(i, method: :delete) do %>
+              <i class="fa fa-trash-o fa-2x"></i>
+            <% end %>
+        </td>
+        <td><%= i.id %></td>
+        <td><%= i.item_number %></td>
+        <td><%= i.start_date %></td>
+        <td><%= i.end_date %></td>
+
+        </tr>
+      <% end %>
+  </tbody>
+  
+  </table>
+</div>
+
+<div class="row">
+<div class="col-9 m-2">  </div>
+<div class="col-3">
+  
+    <%= pager(@page, @count, @pages) %>
+
+</div>
+</div>

@@ -4,6 +4,7 @@ class Fileparse
     end
    
     def self.parse(path)
+        binding.pry
         workbook = Roo::Spreadsheet.open path
         worksheets = workbook.sheets
         puts "Found #{worksheets.count} worksheets"

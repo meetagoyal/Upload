@@ -1,9 +1,14 @@
 require 'file_parse'
 
 class ItemsController < ApplicationController
+    before_action :auth_admin
     
     def index
-       @items = Item.all
+       @masterdata = 
+       @items = Item.limit(5).offset(params[:page].to_i * 5).order(start_date: 'asc') 
+       @page = params[:page].to_i
+       @count = Item.count
+       @pages = (@count / 5.0).ceil - 1
         
       end
 
@@ -40,7 +45,7 @@ class ItemsController < ApplicationController
         respond_to do |format|
            
             format.xlsx {
-                response.headers['Content-Disposition'] = 'attachment; filename="ItemSub.xlsx"'
+                response.headers['Content-Disposition'] = 'attachment; filename="ItemSubExclusion.xlsx"'
               }
             end
           
@@ -52,9 +57,9 @@ class ItemsController < ApplicationController
         filename = params[:my_file].original_filename
         ext = filename.split('.')
         if (ext[1].to_s != 'xlsx')
-            
-           
+              
         else 
+            binding.pry
             file = File.join("public", params[:my_file].original_filename)        
             FileUtils.cp tmp.path, file
             Fileparse.parse(params[:my_file])

@@ -1,0 +1,23 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+  #highlight_row = style.add_style(bg_color: "EFC376")
+
+  wb.add_worksheet(name: "ItemSubExclusion") do |sheet|
+
+    sheet.add_row ['Item Number', 'Start Date ', 'Begin Date']
+    @items.each do |i|
+                       
+     sheet.add_row [i.item_number, i.start_date, i.end_date]
+    end
+  end
+    header_style = wb.styles.add_style :bg_color => "D8D8D8",
+                                                   :b => true,
+                                                   :border => { :style => :thin, :color => "00" },
+                                                   :alignment => { :horizontal => :center,
+                                                                   :vertical => :center ,
+                                                 :wrap_text => false}
+
+    highlight_cell = style.add_style(bg_color: "EFC376",
+                                   border: Axlsx::STYLE_THIN_BORDER,
+                                   alignment: { horizontal: :center })  
+end

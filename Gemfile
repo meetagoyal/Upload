@@ -34,6 +34,8 @@ gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 gem 'rubyXL'
 gem 'roo'
 gem 'spreadsheet'
